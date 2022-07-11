@@ -1,10 +1,10 @@
 package com.spring.market.persistence.entity;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
+@Entity
+@Table(name = "categorias")
 public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,6 +13,17 @@ public class Categoria {
 
     private String descripcion;
     private Boolean estado;
+    //Relacion entre Categoria con productos
+    @OneToMany(mappedBy = "categoria")//de uno a muchos ya que esta clase es para varios elementos y el mapped es quien lo mapea
+    private List<Producto> productos;
+
+    public List<Producto> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(List<Producto> productos) {
+        this.productos = productos;
+    }
 
     public Integer getIdCategoria() {
         return idCategoria;

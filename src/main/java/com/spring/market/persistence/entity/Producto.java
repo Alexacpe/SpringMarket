@@ -24,6 +24,11 @@ public class Producto {
 
     private Boolean estado;
 
+    //Relacion entre tablas Producto y Categoria
+    @ManyToOne(fetch = FetchType.LAZY)//anotacion para relacionar (de muchos a uno)
+    @JoinColumn(name = "id_categoria",insertable=false, updatable=false) //sirve para recuperar a que categoria pertenece cada producto(no para crear categorias)
+    private Categoria categoria;
+
     public Integer getIdProducto() {
         return idProducto;
     }
@@ -79,4 +84,6 @@ public class Producto {
     public void setEstado(Boolean estado) {
         this.estado = estado;
     }
+
+
 }

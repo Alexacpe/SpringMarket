@@ -1,15 +1,12 @@
 package com.spring.market.domain.repository;
-
-//Dar las reglas de comportamiento a todos los repositorios cuando se hable en terminos de producto, asi intercatuar en base al dominio y no a los repositorios que van directo a la base de datos
-
 import com.spring.market.domain.Product;
-
 import java.util.List;
 import java.util.Optional;
 
+/**Dar las reglas de comportamiento a todos los repositorios cuando se hable en terminos de producto,
+asi intercatuar en base al dominio y no a los repositorios que van directo a las tablas de la base de datos.*/
 public interface ProductRepository {
-    //metodos que quiero que cualquier repositorios que vaya a trabajar con productos tenga que implementar,
-    // asi trabajar con direccion al dominio y no exponer las clases con nombres de las tablas de la base de datos
+    //metodos que quiero que cualquier repositorios que vaya a trabajar con productos tenga que implementar
     /**Retornar una lista de todos los productos*/
     List<Product> getAll();
     /**

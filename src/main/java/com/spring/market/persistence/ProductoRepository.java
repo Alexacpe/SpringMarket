@@ -5,15 +5,22 @@ import com.spring.market.domain.repository.ProductRepository;
 import com.spring.market.persistence.crud.ProductoCrudRepository;
 import com.spring.market.persistence.entity.Producto;
 import com.spring.market.persistence.mapper.ProductMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+/**Al escribir @Autorited se le está indicando a Spring que tiene el control para que cree las instancias para inicializar los objetos que tiene esta anotacion
+ *Es importante tener en cuenta que al utilizar ésta anotacion debe ser en un componente de Spring o que extienda de un componente de Spring
+ */
 //Al utilizar los mappers el ProductoRepositorio queda enfocado al dominio y no a una tabla directamente
 @Repository//Es indicar que desde esta clase es desde donde se realizan las operaciones en la base de datos
 public class ProductoRepository implements ProductRepository { //implementar la interface
+
+    @Autowired //inicializa el objeto productoCrudRepository y mapper ya que solo está creado
     private ProductoCrudRepository productoCrudRepository;
     //variable para hacer la conversión de product a producto
+    @Autowired
     private ProductMapper mapper;
         //Metodos para interactuar con la base de datos
     /**recupera la lista de todos los productos y los convierte en products gracias a los metodos del mapper

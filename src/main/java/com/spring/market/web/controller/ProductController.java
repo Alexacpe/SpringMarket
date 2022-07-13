@@ -3,8 +3,7 @@ package com.spring.market.web.controller;
 import com.spring.market.domain.Product;
 import com.spring.market.domain.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,19 +15,24 @@ public class ProductController {
     @Autowired//se puede implementar ya que el servicio tiene una anotacion de Spring
     private ProductService productService;
 
+    @GetMapping("/all") //Para obtener informacion y se le indica el path sobre el que va a responder
     public List<Product> getAll(){
         return productService.getAll();
     }
-    public Optional<Product> getProduct(int productId){
+    @GetMapping("/{id}")
+    public Optional<Product> getProduct(@PathVariable("id") int productId){//@PathVariable es para ingresar el id de la peticion
         return productService.getProduct(productId);
     }
-    public Optional<List<Product>>  getByCategory (int categoryId){
+    @GetMapping("/category/{categoryId}")
+    public Optional<List<Product>>  getByCategory (@PathVariable("categoryId")int categoryId){
         return productService.getByCategory(categoryId);
     }
-    public Product save(Product product){
+    @PostMapping("/save") //no se esta solicitando informacion, se le está enviando
+    public Product save(@RequestBody Product product){ //RequestBody=Cuerpo de la peticion
         return productService.save(product);
     }
-    public boolean delete(int productId){
+    @DeleteMapping("/delete/{id}")
+    public boolean delete(@PathVariable("id")int  productId){
         return productService.delete(productId);
     }
 }

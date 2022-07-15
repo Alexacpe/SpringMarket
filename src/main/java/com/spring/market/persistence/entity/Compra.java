@@ -26,7 +26,7 @@ public class Compra {
     private Cliente cliente;
 
     //acceder a los productos que pertenecen a la compra
-    @OneToMany(mappedBy = "compras")
+    @OneToMany(mappedBy = "compras", cascade = {CascadeType.ALL})//Todos los procesos que se hacen en la base de datos de una compra, los productos se guardaran en cascada
     private List<CompraProducto> productos;
 
     public Cliente getCliente() {

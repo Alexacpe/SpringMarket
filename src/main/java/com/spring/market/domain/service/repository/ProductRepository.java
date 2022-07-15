@@ -1,4 +1,4 @@
-package com.spring.market.domain.repository;
+package com.spring.market.domain.service.repository;
 import com.spring.market.domain.Product;
 import java.util.List;
 import java.util.Optional;
@@ -20,7 +20,7 @@ public interface ProductRepository {
      * */
     Optional<List<Product>> getScarseProducts(int quantity);
 
-    /**Retornar un producto específico
+    /**Retornar un producto especifico
      * @param productId: traer el producto por su id
      */
     Optional<Product> getProduct(int productId);

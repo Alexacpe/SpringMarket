@@ -10,7 +10,7 @@ import org.mapstruct.Mappings;
 //mapear los objetos de dominio en los entities
 @Mapper(componentModel = "spring")//agregar el componente de spring
 public interface CategoryMapper {
-    /**Retorna una conversión de categoría a category
+    /**Retorna una conversion de categoria a category
      * @param categoria  Recibe una categoria para convertirla en category
      */
     @Mappings({//pide una lista de mappings
@@ -23,7 +23,9 @@ public interface CategoryMapper {
     /**
      * Retornar la conversion de category a categoria
      */
-    @InheritInverseConfiguration//indica que la conversión es la inversa que la enterior sin tener que declarar de nuevo todos los mappers
+    @InheritInverseConfiguration//indica que la conversion es la inversa que la enterior sin tener que declarar de nuevo todos los mappers
     @Mapping(target = "productos",ignore = true)//como no se va a mapear el campo productos en la categoria se indica que lo ignore
     Categoria toCategoria (Category category);
+
+
 }

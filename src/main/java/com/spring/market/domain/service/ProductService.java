@@ -1,7 +1,7 @@
 package com.spring.market.domain.service;
 
 import com.spring.market.domain.Product;
-import com.spring.market.domain.repository.ProductRepository;
+import com.spring.market.domain.service.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -13,8 +13,8 @@ public interface ProductoCrudRepository extends CrudRepository<Producto,Integer>
      * @param idCategoria recibe el id de la categoria
      * */
     List<Producto> findByIdCategoriaOrderByNombreAsc(int idCategoria);
-    /**Traer la lista de los productos que se están agotando en stock que sean menor que
-     * @param cantidadStock trae la columna de la base de datos donde está la cantidad de productos y para asignar que cantidad es la considerado el producto escaso
+    /**Traer la lista de los productos que se estan agotando en stock que sean menor que
+     * @param cantidadStock trae la columna de la base de datos donde esta la cantidad de productos y para asignar que cantidad es la considerado el producto escaso
      * @param estado Si hay o no existencias del producto como true o false
      */
     Optional<List<Producto>> findByCantidadStockLessThanAndEstado(int cantidadStock,boolean estado);

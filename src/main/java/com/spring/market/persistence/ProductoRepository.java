@@ -1,7 +1,7 @@
 package com.spring.market.persistence;
 
 import com.spring.market.domain.Product;
-import com.spring.market.domain.repository.ProductRepository;
+import com.spring.market.domain.service.repository.ProductRepository;
 import com.spring.market.persistence.crud.ProductoCrudRepository;
 import com.spring.market.persistence.entity.Producto;
 import com.spring.market.persistence.mapper.ProductMapper;
@@ -10,16 +10,16 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
-/**Al escribir @Autorited se le está indicando a Spring que tiene el control para que cree las instancias para inicializar los objetos que tiene esta anotacion
- *Es importante tener en cuenta que al utilizar ésta anotacion debe ser en un componente de Spring o que extienda de un componente de Spring
+/**Al escribir @Autorited se le esta indicando a Spring que tiene el control para que cree las instancias para inicializar los objetos que tiene esta anotacion
+ *Es importante tener en cuenta que al utilizar esta anotacion debe ser en un componente de Spring o que extienda de un componente de Spring
  */
 //Al utilizar los mappers el ProductoRepositorio queda enfocado al dominio y no a una tabla directamente
 @Repository//Es indicar que desde esta clase es desde donde se realizan las operaciones en la base de datos
 public class ProductoRepository implements ProductRepository { //implementar la interface
 
-    @Autowired //inicializa el objeto productoCrudRepository y mapper ya que solo está creado
+    @Autowired //inicializa el objeto productoCrudRepository y mapper ya que solo esta creado
     private ProductoCrudRepository productoCrudRepository;
-    //variable para hacer la conversión de product a producto
+    //variable para hacer la conversion de product a producto
     @Autowired
     private ProductMapper mapper;
         //Metodos para interactuar con la base de datos
@@ -44,8 +44,8 @@ public class ProductoRepository implements ProductRepository { //implementar la 
     /**
      *Recupera la lista de productos de la base de datos y la convierte en products
      * @param quantity para asignar el valor que se va a considerar para que el product sea escaso
-     * @return al no tener un mapeador que devuelva una lista de opcionales se le crea un map a los productos con una expresión lamda (arrow function)
-     * para que el .map retorne un opcional de lo que se esté haciendo dentro de la expresión
+     * @return al no tener un mapeador que devuelva una lista de opcionales se le crea un map a los productos con una expresion lamda (arrow function)
+     * para que el .map retorne un opcional de lo que se este haciendo dentro de la expresion
      */
     @Override
     public Optional<List<Product>> getScarseProducts(int quantity) {
@@ -61,7 +61,7 @@ public class ProductoRepository implements ProductRepository { //implementar la 
     }
     /**Guardar el producto
      * @param product del tipo Product
-     * @return el save espera un producto y no un product por lo que se hace una conversión inversa
+     * @return el save espera un producto y no un product por lo que se hace una conversion inversa
      */
     @Override
     public Product save(Product product) {
@@ -69,7 +69,7 @@ public class ProductoRepository implements ProductRepository { //implementar la 
         return mapper.toProduct(productoCrudRepository.save(producto));
     }
 
-    /**Eliminar el product: Con el metodo deleteById del CrudRepository de spring data elimina el product desde el id que se le está ingresando como parametro
+    /**Eliminar el product: Con el metodo deleteById del CrudRepository de spring data elimina el product desde el id que se le esta ingresando como parametro
      * @param productId para identificar el product que se va a eliminar
      */
     @Override

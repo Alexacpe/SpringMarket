@@ -19,6 +19,8 @@ public interface ProductMapper {
             @Mapping(source = "cantidadStock", target = "stock"),
             @Mapping(source = "estado", target = "active"),
             @Mapping(source = "categoria", target = "category"),//category tiene su propio mapper que necesita ser implementado
+
+
     })
     Product toProduct(Producto producto);
     List<Product> toProducts(List<Producto> productos);

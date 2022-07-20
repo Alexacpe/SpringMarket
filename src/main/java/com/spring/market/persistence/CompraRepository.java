@@ -13,28 +13,34 @@ import java.util.Optional;
 
 @Repository
 public class CompraRepository implements PurchaseRepository {
-
+    //inyectar la interface
     @Autowired
     private CompraCrudRepository compraCrudRepository;
+
+    //inyectar el mapper para que este repositorio hable en terminos de dominio
     @Autowired
     private PurchaseMapper mapper;
 
     @Override
     public List<Purchase> getAll() {
-        //convertir de una lista de compras a una lista de Purchases
-        return mapper.toPurchases((List<Compra>) compraCrudRepository.findAll());
+        return mapper.toPurchases((List<Compra>) compraCrudRepository.findAll());//retorna una lista de compras como purchase gracias a que el mapper lo transforma
     }
 
     @Override
     public Optional<List<Purchase>> getByClient(String clientId) {
-        return compraCrudRepository.findByIdCliente(clientId).map(compras -> mapper.toPurchases(compras));
+        return compraCrudRepository.findByIdCliente(clientId)
+                .map(compras -> mapper.toPurchases(compras));
     }
 
     @Override
-    public Purchase save(Purchase purchase) {//recibe un purchase, hay que convertirlo a compra
+    public Purchase save(Purchase purchase) {
+        //para guardar el purchase primero se convierte a compra
         Compra compra = mapper.toCompra(purchase);
-        //Guardar en cascada validando que compra conoce los productos conocen a que compra pertenecen
+        //garantizar que la informacion se va a guardar en cascada validando que compra conoce los productos, y los productos saben a que compra pertenecen
         compra.getProductos().forEach(producto -> producto.setCompra(compra));
+
         return mapper.toPurchase(compraCrudRepository.save(compra));
+
     }
 }
+

@@ -49,4 +49,6 @@ public class Categoria {
         this.estado = estado;
     }
 
+
+
 }

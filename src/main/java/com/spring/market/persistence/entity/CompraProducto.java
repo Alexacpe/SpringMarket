@@ -72,4 +72,5 @@ public class CompraProducto {
 
     public void setCompra(Compra compra) {
     }
+
 }

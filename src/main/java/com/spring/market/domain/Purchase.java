@@ -6,12 +6,12 @@ import java.util.Optional;
 
 public class Purchase {
     private int purchaseId;
-    private String client;
-    private LocalDateTime date;
+    private String clientId;
+    private LocalDateTime date = LocalDateTime.now();
     private String paymentMethod;
     private String comment;
     private String state;
-    private Optional<List<PurchaseItem>> item;
+    private List<PurchaseItem> items;
 
     public int getPurchaseId() {
         return purchaseId;
@@ -22,11 +22,11 @@ public class Purchase {
     }
 
     public String getClient() {
-        return client;
+        return clientId;
     }
 
     public void setClient(String client) {
-        this.client = client;
+        this.clientId = client;
     }
 
     public LocalDateTime getDate() {
@@ -61,11 +61,18 @@ public class Purchase {
         this.state = state;
     }
 
-    public Optional<List<PurchaseItem>> getItem() {
-        return item;
+    public List<PurchaseItem> getItems() {
+        return items;
     }
 
-    public void setItem(Optional<List<PurchaseItem>> item) {
-        this.item = item;
+    public void setItems(List<PurchaseItem> items) {
+        this.items = items;
+    }
+    public String getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(String clientId) {
+        this.clientId = clientId;
     }
 }
